@@ -22,7 +22,7 @@ def progress_bar(percent, text="", bar_len=30):
 UNI = "₩Ŵ@W#ma≠*<;:,.·˙ "
 EXTENDED = [c * 2 for c in UNI]
 
-def img_ascii(file, new_file="ascii_image.txt", ASCII=EXTENDED):
+def create(file, new_file=None, ASCII=EXTENDED):
     res = ""
     img = np.array(Image.open("images/" + file))
     for i,line in enumerate(img):
@@ -31,8 +31,9 @@ def img_ascii(file, new_file="ascii_image.txt", ASCII=EXTENDED):
             res += ASCII[int(sum(pixel)/768*len(UNI))]
         res += "\n"
     
-    open("results/" + new_file, "w").write(res)
+    fileName = new_file if new_file else file.split(".")[0]
+    open(f"results/{fileName}", "w").write(res)
 
 #------------------------------------------------------------------------------
 
-img_ascii("lion-hd.jpg", "lion.txt")
+create("elephant-hd.jpg", "elephant.txt")
