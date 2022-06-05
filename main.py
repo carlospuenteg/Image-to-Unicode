@@ -10,7 +10,7 @@ def img_ascii(file, new_file="ascii_image.txt", ASCII=EXTENDED):
     for line in img:
         for pixel in line:
             for i in range(len(ASCII)):
-                if sum(pixel) < 765/(len(ASCII)-i):
+                if min(pixel) < 255/(len(ASCII)-i):
                     res += ASCII[i]
                     break
         res += "\n"
@@ -18,5 +18,3 @@ def img_ascii(file, new_file="ascii_image.txt", ASCII=EXTENDED):
     open("results/" + new_file, "w").write(res)
 
 img_ascii("rabbit-small.jpeg")
-
-# if min(pixel) < 255/(len(ASCII)-i):
