@@ -1,8 +1,7 @@
 import numpy as np
 from PIL import Image
 
-UNI_1 = "*<:,.ˉ˙ "
-UNI = "@#ma*<;:,.·˙ "
+UNI = "₩Ŵ@W#ma≠*<;:,.·˙ "
 EXTENDED = [c * 2 for c in UNI]
 
 def img_ascii(file, new_file="ascii_image.txt", ASCII=EXTENDED):
@@ -16,4 +15,4 @@ def img_ascii(file, new_file="ascii_image.txt", ASCII=EXTENDED):
     open("results/" + new_file, "w").write(res)
 
 #img_ascii("gradient-h.jpeg", "gradient.txt")
-img_ascii("rabbit.jpeg", "rabbit.txt")
+img_ascii("happy-panda.jpeg", "happy-panda.txt")
