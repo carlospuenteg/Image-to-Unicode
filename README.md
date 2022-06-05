@@ -1,4 +1,4 @@
-# Image to Unicode
+# Image to Unicode
 
 This script can convert an image into a Unicode string.
 
