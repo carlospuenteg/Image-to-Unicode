@@ -1,26 +1,22 @@
- 
 import numpy as np
 from PIL import Image
 
-def img_ascii(file, new_file="ascii_image.txt"):
+NORMAL = ("■","▤","◧","◫","□")
+EXTENDED = ("■■","■▤","▤▤","▤◧","◧◧","◧◫","◫◫","◫□","□□","□ ","  ")
+
+def img_ascii(file, new_file="ascii_image.txt", ASCII=EXTENDED):
     res = ""
     img = np.array(Image.open("images/" + file))
     for line in img:
         for pixel in line:
-            if sum(pixel) < 765/5:
-                res += "■"
-            elif sum(pixel) < 765/4:
-                res += "▤"
-            elif sum(pixel) < 765/3:
-                res += "◧"
-            elif sum(pixel) < 765/2:
-                res += "◫"
-            else:
-                res += "□"
+            for i in range(len(ASCII)):
+                if sum(pixel) < 765/(len(ASCII)-i):
+                    res += ASCII[i]
+                    break
         res += "\n"
     
-    f = open("results/" + new_file, "w")
-    f.write(res)
-    f.close()
+    open("results/" + new_file, "w").write(res)
 
-img_ascii("rabbit.jpeg")
+img_ascii("rabbit-small.jpeg")
+
+# if min(pixel) < 255/(len(ASCII)-i):
