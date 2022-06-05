@@ -2,8 +2,7 @@ import numpy as np
 from PIL import Image
 
 NORMAL = ("■","▤","◧","◫","□")
-EXTENDED = ("■■","■▤","▤▤","▤◧","◧◧","◧◫","◫◫","◫□","□□","□ ","  ")
-
+EXTENDED = ("■■","■▤","▤▤","▤◧","◧◧","◧◫","◫◫","◫□","□□","□-","--","- ","  ")
 def img_ascii(file, new_file="ascii_image.txt", ASCII=EXTENDED):
     res = ""
     img = np.array(Image.open("images/" + file))
