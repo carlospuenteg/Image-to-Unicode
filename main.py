@@ -1,20 +1,17 @@
 import numpy as np
 from PIL import Image
 
-NORMAL = ("■","▤","◧","◫","□")
-EXTENDED = ("☗☗","☗■","■■","■▞","▞▞","▞➎","➎➎","➎●","●●","●▒","▒▒","▒◆","◆◆","◆▤","▤▤","▤░","░░","░◧","◧◧","◧◫","◫◫","◫☑","☑☑","☑▮","▮▮","▮▯","▯▯","▯□","□□","□-","□✚","✚✚","✚+","++","+-","--","-.","..",". ","  ")
+UNI = "_,.ˉ˙ "
+EXTENDED = [c * 2 for c in UNI]
 
 def img_ascii(file, new_file="ascii_image.txt", ASCII=EXTENDED):
     res = ""
     img = np.array(Image.open("images/" + file))
     for line in img:
         for pixel in line:
-            for i in range(len(ASCII)):
-                if np.average(pixel) <= 255/(len(ASCII)-i):
-                    res += ASCII[i]
-                    break
+            res += ASCII[int(sum(pixel)/768*4)]
         res += "\n"
     
     open("results/" + new_file, "w").write(res)
 
-img_ascii("rabbit-contrast.jpeg", "rabbit-contrast.txt")
+img_ascii("rabbit.jpeg", "rabbit.txt")
